@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Verifikácia Vašej mailovej adresy" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% trans "Verifikácia Vašej mailovej adresy" %}
+    {% endelement %}
+    <p>
+        {% blocktrans %}Poslali sme Vám mail na Vašu verifikáciu. Klikni na odkaz ktorý dokonči proces registrácie. Ak nevidíte verificačný email vo Vašom adresári doručenej pošty, skontroluj  Vás adresár kde sa ukladajú spamy. Prosím, ak ste nedostali verifikačný email ani po niekoľkých minútach, kontaktujte nás.{% endblocktrans %}
+    </p>
+{% endblock content %}

@@ -1,0 +1,133 @@
+https://mailtrap.io/blog/django-contact-form/
+
+## Kontaktný formulár Django
+
+Máte šťastie, ak vytvárate webovú stránku pomocou výkonného webového rámca Python 
+Django. Okrem toho, že je skvelý na rýchly a bezpečný vývoj webu, poskytuje rámec 
+jednoduchý spôsob vytvorenia a prispôsobenia kontaktného formulára.
+
+Či už ste začiatočník alebo vývojár Jedi, ktorý sa potrebuje zopakovať, tento tutoriál
+ poskytuje solídny základ na vytvorenie robustného a efektívneho kontaktného formulára,
+  ktorý možno zobraziť na vašej domovskej stránke.
+
+### Ako vytvoriť kontaktný formulár Django?
+
+Predtým, ako sa pustíte do krokov, musíte urobiť zostavu formulára, poďme sa pozrieť
+ na základné požiadavky.
+
+V prvom rade sa uistite, že je na vašom počítači nainštalovaný Django. Ak nie z príkazového 
+riadka spustite tento príkaz:
+~~~
+pip install django
+~~~
+Ak máte konkrétnu verziu, ktorú potrebujete, a nie najnovšiu, ktorá je predvolene nainštalovaná,
+ spustite tento príkaz a uveďte číslo verzie:
+~~~
+pip install django==cislo_verzie 
+alebo najnovšiu verziu nainštalujete takto
+
+pip install django
+~~~
+
+Ďalej budete musieť nastaviť skutočný projekt predtým, ako začnete s kontaktným formulárom. 
+Urobte to spustením príkazu django-admin startproject <názov projektu>, kde <názov projektu> 
+je názov, ktorý chcete dať svojmu projektu Django. V našom príklade ho pomenujeme formular.
+~~~
+django-admin startproject formular
+~~~
+
+Tento príkaz vytvorí nový adresár s názvom formular , ktorý obsahuje hlavné nastavenia a konfiguračné súbory.
+~~~
+djngogirls/
+    manage.py
+    ...
+    formular/
+        __init__.py
+        settings.py
+        urls.py
+        asgi.py
+        wsgi.py
+    
+    ...
+~~~
+
+Súbor manage.py je nástroj príkazového riadka, ktorý pomáha pri interakcii s projektom.
+
+Teraz ste pripravení začať vytvárať základný kontaktný formulár.
+Začnite vytvorením nového súboru forms.py v priečinku formular.
+
+Ak chcete získať prístup k rôznym funkciám súvisiacim s formulármi, 
+ako je overovanie a vykresľovanie , vytvorte triedu formulárov , 
+ktorá zdedí vstavanú triedu formulára Django . Tu môžete definovať polia 
+formulára, ktoré chcete získať od používateľa. Tu je úplný kód, ktorý bude v súbore:
+~~~
+from django import forms
+
+class ContactForm(forms.Form):
+    name = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    phone = forms.CharField(max_length=15)
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+~~~
+
+Po vytvorení triedy kontaktného formulára vytvorte nový súbor views.py a 
+pridajte doň funkciu zobrazenia , ktorá vykreslí šablónu kontaktného formulára 
+a spracuje odoslanie:
+
+~~~
+from django.shortcuts import render, redirect
+from myproject.forms import ContactForm
+from django.http import HttpResponse
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the form data
+            pass
+            return redirect('success')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
+
+
+def success(request):
+   return HttpResponse('Success!')
+~~~
+
+Tu sme definovali funkciu zobrazenia s názvom kontakt , ktorá prijíma webovú 
+požiadavku a vracia vykreslenú šablónu kontaktného formulára.
+
+* Funkcia zobrazenia je zodpovedná za :
+    * spracovanie údajov formulára odoslaných používateľom
+    * kontrola, či je požiadavka POST žiadosťou 
+    * Vytvorenie inštancie triedy ContactForm na overenie odoslaných údajov pomocou metódy is_valid().
+
+V tomto príklade jednoducho prejdeme , ale môžete tiež:
+
+1. Odošlite údaje formulára e-mailom. Podrobnejšie to pokryjeme 
+príkladmi kódu v ďalšom kroku nižšie. 
+2. Uložte údaje formulára do databázy:
+
+~~~
+import csv
+from django.shortcuts import redirect
+
+name = form.cleaned_data['name']
+email = form.cleaned_data['email']
+message = form.cleaned_data['message']
+
+file = open('responses.csv', 'a')
+writer = csv.writer(file)
+writer.writerow([name,email,message])
+file.close()
+
+return redirect('success')
+~~~
+
+Všimnite si, že tento prístup ukladá údaje formulára do súboru CSV namiesto databázy. 
+Ak chcete uložiť údaje formulára do databázy, budete musieť definovať model na 
+ukladanie údajov. Ďalšie informácie o definovaní modelov v Django nájdete v príručke 
+Django o nastavení modelov.

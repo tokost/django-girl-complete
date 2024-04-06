@@ -1,0 +1,3 @@
+<h3 style="text-align: center;"><a href="formular/">Kontaktný formulár</a></h3>
+
+<title>Kontaktný formulár</title>

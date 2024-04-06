@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Úprava príspevku</h1>
+<form method="POST" class="post-form">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Uložiť</button>
+</form>
+<div>
+    <h4><a href="/">Späť</a></h4>
+</div>
+{% endblock %}
