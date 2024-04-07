@@ -159,6 +159,22 @@ To je všetko, napriek varovaniu, že adresár so statickými súbormi neexistuj
 
 Údaje z SQLite sa úspešne presunuli do PostgreSQL, čo si môžeme overiť v phAdmin4 alebo nainštalovaním rozšírenia PostgreSQL od Chris Kolkman-a do VS-Code.
 
+GIT - GITHUB
+
+$ git init
+$ git branch -m master main
+$ git remote add origin https://github.com/tokost/django-girl-complete.git
+$ git remote add dgc-gh https://github.com/tokost/django-girl-complete.git
+git pull origin main --allow-unrelated-histories
+$ git push -u origin main
+
+$ git status
+$ git sadd .
+$ git commit -m "Popis vykonanej cinnosti"
+
+
+
+
 IMPLEMENTACIA all-auth
 
 1. Nainštalovať
