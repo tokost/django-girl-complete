@@ -206,15 +206,32 @@ GIT - GITHUB
 $ git init
 $ git branch -m master main
 $ git remote add origin https://github.com/tokost/django-girl-complete.git
-$ git remote add dgc-gh https://github.com/tokost/django-girl-complete.git
-git pull origin main --allow-unrelated-histories
+$ 
+$ git pull origin main --allow-unrelated-historiesgit remote add dgc-gh https://github.com/tokost/django-girl-complete.git
 $ git push -u origin main
 
 $ git status
-$ git sadd .
+$ git add .
 $ git commit -m "Popis vykonanej cinnosti"
 
+Po vyriešení konfliktov musíte dokončiť zlúčenie potvrdením zmien. Nasleduj tieto kroky:
 
+1. Pridajte konfliktné súbory do pracovnej oblasti:
+~~~
+git add README.md blog/migrations/0001_initial.py
+~~~
+
+2. Odovzdajte zmeny na dokončenie zlúčenia:
+~~~
+git commit -m "Merge conflicting changes from remote repository"
+~~~
+3. Ak správa o odovzdaní vyzerá dobre, môžete svoje zmeny vložiť:
+~~~
+git push origin main
+~~~
+Toto presunie zlúčené zmeny do main vetvy na vzdialenom úložisku.
+
+Po vyriešení konfliktov a potvrdení zlúčenia by vaša lokálna pobočka mala byť synchronizovaná so vzdialenou mainpobočkou a mali by ste byť schopní bez problémov preniesť svoje zmeny. 
 
 =======
 python manage.py loaddata whole.json
@@ -229,7 +246,7 @@ IMPLEMENTACIA all-auth
 ~~~
 pip install django-allauth
 ~~~
- 2. Urobiť úpravy v settings.py
+2. Urobiť úpravy v settings.py
 ~~~
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ~~~
