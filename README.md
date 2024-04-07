@@ -20,6 +20,7 @@ Expressing my authorial rights, some things are a bit different from the tutoria
   - Use of `en-us` as my *LANGUAGE_CODE*
   - Addition of `0.0.0.0` and `.herokuapp.com` to the *ALLOWED_HOSTS* list
 
+<<<<<<< HEAD
 https://www.postgresql.org/download/
 
 ## Setup
@@ -39,6 +40,15 @@ $ pip install django-allauth
 $ pip install psycopg2
 $ python manage.py migrate blog
 $ python manage.py createsuperuser (to create user that you'll use to log in)
+=======
+## Setup
+
+In a python virtual environment, run:
+
+- `pip install -r requirements.txt`
+- `python manage.py migrate blog`
+- `python manage.py createsuperuser` (to create user that you'll use to log in)
+>>>>>>> adacb8cb4b7e3a474ad28ffe9bc5d5b391f378eb
 
 ### Run the application
 
@@ -87,6 +97,7 @@ The application will be live at [0.0.0.0:8000](0.0.0.0:8000)
 Django SQLite to PostgreSQL database migration
 https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c1f76711e1 
 
+<<<<<<< HEAD
 1. Vytvoríme si zálohu celej databázy dumpdata zariadenia SQLite.
 najprv musíte urobiť zálohu celej SQLiteDB do form=atu JSON pomocou nižšie uvedeného príkazu
 ~~~
@@ -116,6 +127,16 @@ postgres=#
  
 4. Zadáme údaje pre konektivitu na PostgreSQL DB do setting.py :
 ~~~
+=======
+1. Vezmite si zálohu celej databázy dumpdata zariadenia SQLite.
+najprv musíte urobiť zálohu celej DB pomocou nižšie uvedeného príkazu
+~~~
+python manage.py dumpdata > whole.json
+~~~
+2. Vytvorte Postgres DB pomocou používateľa a hesla.
+
+settings.py
+>>>>>>> adacb8cb4b7e3a474ad28ffe9bc5d5b391f378eb
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -126,6 +147,7 @@ DATABASES = {
         'PORT' : '5432',
     }
 }
+<<<<<<< HEAD
 ~~~
  
 4. Nainštaluje konektor PostgreSQL DB pre Python
@@ -148,11 +170,31 @@ $ python manage.py shell
 >>> from django.contrib.contenttypes.models import ContentType
 >>> ContentType.objects.all().delete()
 >>> ^Z
+=======
+
+Psycopg je najpopulárnejší databázový adaptér PostgreSQL pre programovací jazyk Python . Jeho hlavnými vlastnosťami sú úplná implementácia špecifikácie Python DB API 2.0 a bezpečnosť vlákien (viacero vlákien môže zdieľať rovnaké pripojenie). https://docs.yugabyte.com/preview/reference/drivers/python/postgres-psycopg2-reference/ 
+~~~
+pip install psycopg2
+~~~
+3. Odstráňte všetky súbory migrácie napr. manualne, pretože nepotrebujeme všetky staré migrácie.
+
+4. Namiesto toho vytvoríme jeden súbor migrácie na aplikáciu.
+~~~
+python manage.py makemigrations
+python manage.py migrovať
+~~~
+5. Teraz odstráňte typy obsahu (povinné kroky), inak budete mať krásne miliardy chýb
+~~~
+shell python manage.py
+z django.contrib.contenttypes.models importujte ContentType
+ContentType.objects.all().delete()
+>>>>>>> adacb8cb4b7e3a474ad28ffe9bc5d5b391f378eb
 ~~~
 
 6. Importujte prípravok pomocou údajov o zaťažení.
 Jedným z hlavných krokov je deaktivácia všetkých signálov v projektoch, inak získate jedinečné obmedzenie alebo už vytvorený objekt.
 ~~~
+<<<<<<< HEAD
 $ python manage.py loaddata whole.json
 ~~~
 To je všetko, napriek varovaniu, že adresár so statickými súbormi neexistuje. Toto upozornenie nás len informuje, že zadaný adresár pre statické súbory neexistuje, čo môže, ale nemusí byť relevantné pre našu aktuálnu operáciu.
@@ -174,6 +216,12 @@ $ git commit -m "Popis vykonanej cinnosti"
 
 
 
+=======
+python manage.py loaddata whole.json
+~~~
+to je všetko, úspešne ste presunuli údaje z SQLite do Postgres pomocou zariadení
+použite nižšie uvedený príkaz na načítanie údajov do DB z príslušenstva
+>>>>>>> adacb8cb4b7e3a474ad28ffe9bc5d5b391f378eb
 
 IMPLEMENTACIA all-auth
 
