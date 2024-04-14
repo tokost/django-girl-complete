@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+# from .views import HomeView
+from formular import views as formular_views
 
 urlpatterns = [
     path('', views.post_list, name='post_list'),
@@ -13,4 +15,5 @@ urlpatterns = [
     path('comment/<int:pk>/approve/',
          views.comment_approve, name='comment_approve'),
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
+    path('post/<int:pk>/formular/', formular_views.HomeView),
 ]
