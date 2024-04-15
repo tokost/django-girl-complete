@@ -7,24 +7,25 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-
+'''
 def formular(request):
     s = "<h1> Toto je formular z views.</h1>"
 #    return render(request, 'formular.html', {'form': form})
     return HttpResponse(s)
+'''
 
 def success(request):
    return HttpResponse('Success z views !')
 
-'''
-def HomeView(request):
-    return render(request,'index.html')
-#    s = "<h1> Toto je formular z views aplikacie formular.</h1>"
-#    return HttpResponse(s)
-'''
-
 
 def HomeView(request):
+#    return render(request,'index.html')
+    s = "<h1> Toto je formular z views aplikacie formular.</h1>"
+    return HttpResponse(s)
+
+
+
+def HomeView(request, pk=None):
     if request.method == "POST":
         message_name = request.POST['message-name']
         message_email = request.POST['message-email']

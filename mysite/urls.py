@@ -19,7 +19,7 @@ from django.urls import path, include
 from blog import views as blog_views    # aby nebol konflikt tak sa pri views uvedu
 from contact import views as contact_views  # nazvy aplikacii z ktorych sa stranky tahaju
 
-from formular import views as formular_views
+# from formular import views as formular_views
 
 # from formular.views import formular, success
 
@@ -27,17 +27,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path('accounts/', include('allauth.urls')),
-    path('contact/', include('contact.urls')),
+#    path('contact/', include('contact.urls')),
 
     path('test/', contact_views.showTest),
     path('result/', contact_views.showResult),
 # Pre multi aplikcie v jednom projekte
     path('about/', blog_views.about),
-    path('contact/', blog_views.showContact),
+#    path('contact/', blog_views.showContact),
     path('', blog_views.greeting),  # naskakuje ale stranka z blog.urls
 # Pre kontktnuy formular
 #    path('formular/', formular_views.formular),
-    path('success/', formular_views.success),
-    path('formular/', formular_views.HomeView),
+#    path('success/', formular_views.success),
+    path('formulars/', include('formular.urls')),
 ]
  

@@ -12,20 +12,27 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     
+=======
+>>>>>>> 61c993687b1a7c50f0cc6f324fa540cdf5a54a45
     <div class="page-header">       
         <div class="top-menu" style="float:right">        
             {% if user.is_authenticated %}
                 <h3> {{ request.user }} | <a href="accounts/logout/">Log out</a> </h3>
             {% else %}
-                <h3> <a href="accounts/login/">Log in</a> </h3>
+                <h3> | <a href="accounts/login/">Log in</a> </h3>
             {% endif %}
             {% if user.is_authenticated %}
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
             {% endif %}
-                    </div>        
+        </div>
+        <div class="top-menu" style="float:center">
+            <h3><a href="formulars/formular/">Kontaktný formulár </a>|</h3>
+        </div>
         <h1><a href="/">Môj Blog</a></h1>
     </div>
+
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
@@ -37,3 +44,5 @@
 </body>
 
 </html>
+
+<!-- Komentovanie v html suboroch -->

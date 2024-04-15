@@ -194,9 +194,9 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Pre potreby kontaktov
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static")
+#]
 
 
 # LOGIN_URL = '/admin/' toto bolo ale tiez nemuselo byt povodne
