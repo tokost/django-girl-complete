@@ -1,16 +1,22 @@
 {% extends "blog/base.html" %}
 {% load allauth i18n %}
+
 {% block head_title %}
     {% trans "Registrácia" %}
 {% endblock head_title %}
+
 {% block content %}
+
     {% element h1 %}
         {% trans "Registrácia" %}
     {% endelement %}
+
     <p>
         {% blocktrans %}Máte už na tejto stránke účet ? Ak áno, tak sa prosím <a href="{{ login_url }}">prihláste</a>.{% endblocktrans %}
     </p>
+    
     {% url 'account_signup' as action_url %}
+
     {% element form form=form method="post" action=action_url tags="entrance,signup" %}
         {% slot body %}
             {% csrf_token %}
@@ -23,11 +29,14 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
+
+        {% element button tags="prominent,signup" type="submit" %}
                 {% trans "Registrácia" %}
-            {% endelement %}
+        {% endelement %}
+
         {% endslot %}
     {% endelement %}
+
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}

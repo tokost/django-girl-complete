@@ -32,13 +32,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0',
                  '.pythonanywhere.com', '.herokuapp.com', ]
 
-SITE_ID = 1     # suvisi to s django.contrib.sites
+SITE_ID = 1     # nastaví predvolenú lokalitu pre náš projekt
+""" 
+Django bol vytvorený zo súboru skriptov vyvinutých v novinách na publikovanie obsahu na viacerých doménach
+pomocou jednej obsahovej základne. Tu prichádza na rad modul „stránky“. Jeho účelom je označiť obsah, 
+ktorý sa má zobraziť pre rôzne domény. Predvolená lokalita s URL example.com bola pridaná do vašej databázy
+a keďže to bola prvá lokalita, jej ID bolo 1 a odtiaľ pochádza nastavenie SITE_ID = 1 ktore teraz treba pridat manualne.
+Napr. na nejakej domene povolim autentifikaciu aj s moznostou prihlsit sa cez gmail alebo facebook.
+https://stackoverflow.com/questions/25468676/django-sites-model-what-is-and-why-is-site-id-1?newreg=dd64d57fee204111a68216848f28dd6d
+"""
 
-# Pridane kvoli prihlasovaniu sa miesto mena mailom
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_UNIQUE = True
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory' lebo to suvisi s overenim na mail serveri
 
 
 # EMAIL BACKENDS
@@ -92,7 +95,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
 
-#   'django.contrib.sites,     keby som pouyil social napr. github
+#   'django.contrib.sites,  keby som pouzil social napr. github resp. ten isty obsah na viacerych domenach
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -198,16 +201,31 @@ STATIC_URL = '/static/'
 #    os.path.join(BASE_DIR, "static")
 #]
 
-
-# LOGIN_URL = '/admin/' toto bolo ale tiez nemuselo byt povodne
+# ALLAUTH CONFIGURTION
 
 # Presmerúvate na cestu, ktorá je pripojená k aktuálnej adrese URL.
 # Na presmerovanie na cestu, ktorá je pripojená ku koreňu domény.
 # Musíte použiť úvodnú lomku.
 
+# LOGIN_URL = '/admin/' toto bolo ale tiez nemuselo byt povodne
 LOGIN_REDIRECT_URL = '/'
 
-                      
+# Pridane kvoli prihlasovaniu sa miesto mena mailom
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_UNIQUE = True
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory' 
+# lebo to suvisi s overenim na mail serveri ak by sme ho pouzivali
+# pouziva sa k tomu sablona verification_sent.html z adresara account.
+# patri k tomu este sprava email_confirmation_message.txt z afdresara email
+# potom ked klikneme na link tak budeme presmerovany rovno na login
+
+# vytvorime si fiktivny mailovy server kvoli pouzivniu milovych uctov
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+# ak by sme pouzivali konkretny mail server napr. u webglobe
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

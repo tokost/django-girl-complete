@@ -5,25 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
-<!--    <div style="text-align:center">
+    <div class="container">
         <h1>Kontaktný formulár</h1>
-    </div> -->
-<!--    <div class="box"> -->
-        <div class="container">
-            <h1>Kontaktný formulár</h1>
-            <form method="POST">  
-                {% csrf_token %}
-                <input class="name" name="message-name" type="text" placeholder="Zadajte Vaše meno">
-                <input class="email" name="message-email" type="email" placeholder="Zadajte Váš Email">
-                <textarea name="message" id="message" cols="30" rows="10" placeholder="Npíšte nám Vašu správu"></textarea>
-                <button type="submit">Odošli správu</button>
-            </form>
-        </div>
-<!--    </div> -->
+        <form method="POST"> <!-- class="post-form" action = 'confirmation/'> -->
+            {% csrf_token %}
+            <input class="name" name="message-name" type="text" placeholder="Zadajte Vaše meno">
+            <input class="email" name="message-email" type="email" placeholder="Zadajte Váš Email">
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Npíšte nám Vašu správu"></textarea>
+            <button type="submit">Odošli správu</button>
+<!--            <h3>Thanks for your contact!</h3> -->
+        </form>
+    </div>
 <style>
     .container {
         position: relative;

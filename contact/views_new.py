@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from .forms import ContactForm
 
 # Create your views here.
-
+'''
 # Contact Forms
 def contact(request):
     form = ContactForm(request.POST)
@@ -26,6 +26,8 @@ def contact(request):
         form = ContactForm()
         return render(request, 'contact.html', {'form': form})
 #    reverse('contact', args=())
+'''
+
 
 # Pre multiple app
 def showTest(request):

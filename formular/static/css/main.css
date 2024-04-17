@@ -3,8 +3,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #E99269;
+    font-family: 'Montserrat', sans-serif; /* 'Montserrat' */
+    background-color: #ff9400;
 }
 
 .box {
@@ -31,13 +31,13 @@ form {
     width: 90%;
     padding: 10px 0;
     margin: 20px 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif; 
     font-size: 14px;
     font-weight: 400;
     border: none;
-    background-color: #F1FAEE;
-    border-bottom: 1px solid #C81927;
-    color: #C81927;
+    background-color: #F1FAEE; /* #F1FAEE */
+    border-bottom: 1px solid #C81927; /* C81927 */
+    color: #C81927; /* #C81927 */
     outline: none;
 }
 
@@ -48,9 +48,9 @@ form {
 button {
     margin-top: 20px;
     padding: 10px 180px;
-    font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #457B9D;
+    font-size: 14px; /* 14px */
+    font-family: 'Montserrat', sans-serif; /* 'Montserrat', sans-serif; */
+    background-color: #457B9D; /* #457B9D; */
     color: #F1FAEE;
     transition: 0.3s;
     border: none;
